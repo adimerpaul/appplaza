@@ -1,3 +1,4 @@
+import 'package:appplaza/pages/movie/MovieDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,7 +6,8 @@ import 'pages/home/Home.dart';
 import 'pages/login/Login.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -33,6 +35,7 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/login': (context) => const Home(),
           '/home': (context) => const Home(),
+          '/moviedetail': (context) => const Moviedetail(),
         },
       ),
     );
