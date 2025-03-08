@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
               'Inicia sesión para continuar',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
           //   btn continuar con google
@@ -64,7 +64,7 @@ class _LoginState extends State<Login> {
                     Text(
                       'Continuar con Google',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         color: Colors.white,
                       ),
                     ),
@@ -74,7 +74,24 @@ class _LoginState extends State<Login> {
             ),
           ],
         ),
-      )
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.transparent,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Center(
+              child: Text(
+                '¿No tienes una cuenta? Regístrate',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
