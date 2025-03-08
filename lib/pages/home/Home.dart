@@ -12,6 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
+  int index_color = 0;
   List<String> _carouselImages = [
     'assets/images/caroucel1.png',
     'assets/images/caroucel2.png',
@@ -342,6 +343,136 @@ class _HomeState extends State<Home> {
               ),
             ],
           ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        height: 64.0,
+        color: backgroundColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  index_color = 0;
+                });
+              },
+              child: Column(
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    index_color == 0 ? Icons.home : Icons.home_outlined,
+                    color: index_color == 0 ? primaryColor : Colors.white,
+                  ),
+                  // const SizedBox(height: 4),
+                  Text(
+                    'Inicio',
+                    style: TextStyle(
+                      color: index_color == 0 ? primaryColor : Colors.white,
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  index_color = 1;
+                });
+              },
+              child: Column(
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    index_color == 1 ? Icons.local_movies : Icons.local_movies_outlined,
+                    color: index_color == 1 ? primaryColor : Colors.white,
+                  ),
+                  // const SizedBox(height: 4),
+                  Text(
+                    'Plaza',
+                    style: TextStyle(
+                      color: index_color == 1 ? primaryColor : Colors.white,
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  index_color = 2;
+                });
+              },
+              child: Column(
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    index_color == 2 ? Icons.fastfood : Icons.fastfood_outlined,
+                    color: index_color == 2 ? primaryColor : Colors.white,
+                  ),
+                  // const SizedBox(height: 4),
+                  Text(
+                    'Comida',
+                    style: TextStyle(
+                      color: index_color == 2 ? primaryColor : Colors.white,
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  index_color = 3;
+                });
+              },
+              child: Column(
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    index_color == 3 ? Icons.movie_creation : Icons.movie_creation_outlined,
+                    color: index_color == 3 ? primaryColor : Colors.white,
+                  ),
+                  // const SizedBox(height: 4),
+                  Text(
+                    'Tickets',
+                    style: TextStyle(
+                      color: index_color == 3 ? primaryColor : Colors.white,
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // cuenta
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  index_color = 4;
+                });
+              },
+              child: Column(
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    index_color == 4 ? Icons.person : Icons.person_outline,
+                    color: index_color == 4 ? primaryColor : Colors.white,
+                  ),
+                  // const SizedBox(height: 4),
+                  Text(
+                    'Cuenta',
+                    style: TextStyle(
+                      color: index_color == 4 ? primaryColor : Colors.white,
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
