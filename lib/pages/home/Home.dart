@@ -17,6 +17,42 @@ class _HomeState extends State<Home> {
     'assets/images/caroucel2.png',
     'assets/images/caroucel3.png',
   ];
+  List _carteleraImages = [
+    {
+      "image": "assets/images/pelicula1.png",
+      "title": "Ataque a los titanes"
+    },
+    {
+      "image": "assets/images/pelicula2.png",
+      "title": "El conjuro"
+    },
+    {
+      "image": "assets/images/pelicula3.png",
+      "title": "Rápidos y Furiosos"
+    },
+    {
+      "image": "assets/images/pelicula4.png",
+      "title": "El conjuro"
+    },
+  ];
+  List _proximosImages = [
+    {
+      "image": "assets/images/proximo1.png",
+      "title": "Ataque a los titanes"
+    },
+    {
+      "image": "assets/images/proximo2.png",
+      "title": "El conjuro"
+    },
+    {
+      "image": "assets/images/proximo3.png",
+      "title": "Rápidos y Furiosos"
+    },
+    {
+      "image": "assets/images/proximo4.png",
+      "title": "El conjuro"
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,12 +170,153 @@ class _HomeState extends State<Home> {
                 );
               }).toList(),
             ),
-            Text('Home Page',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Cartelera',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    )),
+                Row(
+                  children: [
+                    Text('Ver todo',
+                        style: TextStyle(
+                          color: primaryColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: primaryColor,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: _carteleraImages.map((i) {
+                  return Container(
+                    width: 120, // Ancho de cada tarjeta
+                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10), // Bordes redondeados opcionales
+                      color: Colors.black87, // Fondo oscuro para que resalte la imagen
+                    ),
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10), // Redondeo de la imagen
+                          child: Image.asset(
+                            i["image"]!, // ✅ Corrección: acceder correctamente a la imagen
+                            fit: BoxFit.cover, // 🔥 Asegura que la imagen se recorte correctamente
+                            width: 120, // Ancho igual al contenedor
+                            height: 180, // Altura de la imagen
+                          ),
+                        ),
+                        // SizedBox(height: 5),
+                        Container(
+                          height: 40, // Altura del contenedor del título
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 5),
+                              child: Text(
+                                i["title"]!, // ✅ Corrección: acceder correctamente al título
+                                textAlign: TextAlign.center, // Centrar el texto
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                maxLines: 2, // Evita que el texto se desborde
+                                overflow: TextOverflow.ellipsis, // Añade "..." si es muy largo
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Proximos',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    )),
+                Row(
+                  children: [
+                    Text('Ver todo',
+                        style: TextStyle(
+                          color: primaryColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: primaryColor,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: _proximosImages.map((i) {
+                  return Container(
+                    width: 120, // Ancho de cada tarjeta
+                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10), // Bordes redondeados opcionales
+                      color: Colors.black87, // Fondo oscuro para que resalte la imagen
+                    ),
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10), // Redondeo de la imagen
+                          child: Image.asset(
+                            i["image"]!, // ✅ Corrección: acceder correctamente a la imagen
+                            fit: BoxFit.cover, // 🔥 Asegura que la imagen se recorte correctamente
+                            width: 120, // Ancho igual al contenedor
+                            height: 180, // Altura de la imagen
+                          ),
+                        ),
+                        // SizedBox(height: 5),
+                        Container(
+                          height: 40, // Altura del contenedor del título
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 5),
+                              child: Text(
+                                i["title"]!, // ✅ Corrección: acceder correctamente al título
+                                textAlign: TextAlign.center, // Centrar el texto
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                maxLines: 2, // Evita que el texto se desborde
+                                overflow: TextOverflow.ellipsis, // Añade "..." si es muy largo
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
           ],
         ),
       ),
