@@ -79,6 +79,9 @@ class _MoviedetailState extends State<Moviedetail> {
     'rating': '8.5',
     'reviews': '1.5K',
   };
+  List<dynamic> castList = [];
+  List<dynamic> videoList = [];
+  List<dynamic> photoList = [];
 
   late YoutubePlayerController _controller ;
   bool isPlaying = false;
@@ -86,6 +89,9 @@ class _MoviedetailState extends State<Moviedetail> {
   @override
   void initState() {
     super.initState();
+    castList = movie['cast'] as List<dynamic>;
+    videoList = movie['videos'] as List<dynamic>;
+    photoList = movie['photos'] as List<dynamic>;
     initVideoYoutube();
   }
   String youtubeImg(String url) {
@@ -397,6 +403,148 @@ class _MoviedetailState extends State<Moviedetail> {
                                       size: 50,
                                     ),
                                   ],
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                            //   synopsis
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Sinopsis',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                movie['synopsis'] as String,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Cast',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  Row(
+                                    children: [
+                                      Text('Ver todo',
+                                          style: TextStyle(
+                                            color: primaryColor,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: primaryColor,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: List.generate(
+                                    castList.length,  // ✅ Ahora Dart reconoce 'length'
+                                        (index) {
+                                      var cast = castList[index] as Map<String, dynamic>;  // ✅ Cast a Map para acceder a los valores
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.circular(50),
+                                              child: Image.asset(
+                                                cast['image'] as String,
+                                                height: 100,
+                                              ),
+                                            ),
+                                            SizedBox(height: 8),
+                                            Text(
+                                              cast['name'] as String,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                            Text(
+                                              cast['character'] as String,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Fotos',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  Row(
+                                    children: [
+                                      Text('Ver todo',
+                                          style: TextStyle(
+                                            color: primaryColor,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: primaryColor,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: List.generate(
+                                    photoList.length,  // ✅ Ahora Dart reconoce 'length'
+                                        (index) {
+                                      var photo = photoList[index] as Map<String, dynamic>;  // ✅ Cast a Map para acceder a los valores
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.circular(5),
+                                              child: Image.asset(
+                                                photo['image'] as String,
+                                                height: 100,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             ]
