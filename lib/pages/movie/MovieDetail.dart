@@ -80,18 +80,23 @@ class _MoviedetailState extends State<Moviedetail> {
     'reviews': '1.5K',
   };
 
-  YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: 'iLnmTe5Q2Qw',
-    flags: YoutubePlayerFlags(
-      autoPlay: false,
-      // mute: true,
-    ),
-  );
+  late YoutubePlayerController _controller ;
+  bool isPlaying = false;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     initVideoYoutube();
+  }
+  String youtubeImg(String url) {
+    var vCodigo = url.split('v=')[1];
+    return 'https://img.youtube.com/vi/$vCodigo/0.jpg';
+  }
+  void playVideo() {
+    _controller.play();
+    setState(() {
+      isPlaying = true;
+    });
   }
   void initVideoYoutube() {
     var trailer = movie['trailer'].toString();
@@ -100,13 +105,12 @@ class _MoviedetailState extends State<Moviedetail> {
     _controller = YoutubePlayerController(
       initialVideoId: vCodigo,
       flags: YoutubePlayerFlags(
-        autoPlay: false,
-        showLiveFullscreenButton: true, // Permite fullscreen
+        autoPlay: true,
+        showLiveFullscreenButton: true,
         captionLanguage: 'es',
       ),
     )..addListener(() {
       if (!_controller.value.isFullScreen) {
-        // Restaurar los estilos cuando se sale del fullscreen
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
         SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
@@ -377,12 +381,23 @@ class _MoviedetailState extends State<Moviedetail> {
                                 ],
                               ),
                               SizedBox(height: 8),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: player,
-                                  ),
-                                ],
+                              isPlaying
+                                  ? player // Si está en reproducción, muestra el video
+                                  : GestureDetector(
+                                onTap: playVideo, // Oculta la imagen y reproduce el video
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Image.network(
+                                      youtubeImg(movie['trailer'] as String),
+                                    ),
+                                    Icon(
+                                      Icons.play_circle_fill,
+                                      color: Colors.white,
+                                      size: 50,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ]
                         ),
